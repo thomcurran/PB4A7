@@ -37,6 +37,7 @@ library("tidyverse")
 library("mosaic")
 library("ggplot2")
 library("sjlabelled")
+library("psych")
 ```
 
 
@@ -60,7 +61,7 @@ WVS$V2A <- as_character(WVS$V2A) # this saves the country variable as a "charact
 ## Case Study in the empty model: Perceptions of Choice in Australia and Japan
 
 
-Lets start by looking at one specific variable from the WVS this week:perceptions of choice in life. The perceptions of choice in life variable asks the question, “How much freedom of choice and control over own life." It is measured on a 1-10 scale:
+Lets start by looking at one specific variable from the WVS this week: perceptions of choice in life. The perceptions of choice in life variable asks the question, “How much freedom of choice and control over own life." It is measured on a 1-10 scale:
 
 1. No choice at all
 
@@ -77,20 +78,21 @@ I looked in the codebook and the perceptions of choice variable is listed as V55
 ```{r}
 WVSchoice <- 
   WVS %>% 
-  select(??, ??) # SELECT THE VARIABLES OF INTEREST HERE
+  select(V55, V2A) # SELECT THE VARIABLES OF INTEREST HERE
 head(WVSchoice)
 ```
 
 
-Lets now run the favstats() function to see what we are playing with for the choice variable (V55).
+Lets now run the favstats() function to see what we are playing with for the choice variable (V55). You can also use describe if you wish (from psych).
 
 
 ```{r}
 favstats(~V55, data = WVSchoice)
+describe(WVSchoice$V55)
 ```
 
 
-Just like other variables in this dataset, we need to edit the dataframe since the variable has values we can’t interpret like -5. While we are at it, lets also filter out Australia in the first instance as the country of interest. We can do that by using the filter() function.
+Just like other variables in this dataset, we need to edit the dataframe since the variable has values we can’t interpret like -5. While we are at it, lets also filter out Australia in the first instance as the country of interest. We can do that by using the filter() function from tidyverse.
 
 
 ```{r}
@@ -101,12 +103,12 @@ WVSaus
 ```
 
 
-Box-plot, histogram, and descriptives.
+Box-plot, histogram, and descriptive statistics.
 
 
 ## The empty model
 
-Lets begin to build an empty model for Australia. The first step in this process is to calculate the mean and save it into the dataframe. Remember, the mean is our "best guess" of what someone in Australia would score on perceptions of choice given no other information. The mean is the empty model. It is the predicted score. We can calculate and save the mean as an additional variable in our dataframe using the mutate() function.
+Lets begin to build an empty model for Australia. The first step in this process is to calculate the mean and save it into the dataframe. Remember, the mean is our "best guess" of what someone in Australia would score on perceptions of choice given no other information. The mean is the empty model. It is the predicted score. We can calculate and save the mean as an additional variable in our dataframe using the mutate() function from tidyverse.
 
 
 ```{r}
@@ -116,7 +118,7 @@ WVSaus <-
 WVSaus
 ```
 
-Or we can do the same thing by using the following code (whichever you prefer):
+Or we can do the same thing by using the following code from base R (whichever you prefer):
 
 ```{r}
 WVSaus$mean_choice <- mean(WVSaus$V55)

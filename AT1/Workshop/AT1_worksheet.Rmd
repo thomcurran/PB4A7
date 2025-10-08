@@ -24,6 +24,7 @@ install.packages("tidyverse")
 install.packages("mosaic")
 install.packages("ggplot2")
 install.packages("sjlabelled")
+install.packages("psych")
 ```
 
 

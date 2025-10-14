@@ -1,5 +1,5 @@
 ---
-title: 'AT4: Relationships'
+title: 'AT3: Relationships'
 output:
   html_document:
     df_print: paged
@@ -14,6 +14,8 @@ By the end of this workshop, you should be able to:
 2. Plot the relationship between two variables using ggplot()
 
 3. Set up a two-parameter linear model to test a simple relationship
+
+4. Set up a three-parameter linear model to test a multiple relationship
 
 4. Use the lm.beta() function to return standardized estimates
 
@@ -52,12 +54,11 @@ This week, we are going to use data from the World Happiness Report 2019 (WHR). 
 
 You can go to the WHR site to see what we’ll be working with. Don’t download anything: https://worldhappiness.report/. We will be looking at data from 2019, which includes mean scores for happiness between 2008 and 2018 for each country.
 
-You can access the original .xls file of the data here: https://s3.amazonaws.com/happiness-report/2019/Chapter2OnlineData.xls. Becasue the file is not very R friendly, I have trimmed it down to include just the variables of interest for this session and saved it as a .csv file. These variables are:
+You can access the original .xls file of the data here: https://s3.amazonaws.com/happiness-report/2019/Chapter2OnlineData.xls. Because the file is not very R friendly, I have trimmed it down to include just the variables of interest for this session and saved it as a .csv file. These variables are:
 
 1. *Happiness score or subjective well-being (variable name "Happiness")*: The survey measure of happiness is from the January, 2019 release of the Gallup World Poll (GWP) covering years from 2005 to 2018, as well the special GWP surveys for four countries in 2018. Unless stated otherwise, it is the *national average* response to the question of happiness. The English wording of the question is “Please imagine a ladder, with steps numbered from 0 at the bottom to 10 at the top. The top of the ladder represents the best possible life for you and the bottom of the ladder represents the worst possible life for you. On which step of the ladder would you say you personally feel you stand at this time?” This measure is also referred to as Cantril life ladder, or just life ladder in our analysis.
 
-2. *GDP per capita (variable name "GDP")*: The survey measure of GDP is purchasing power parity (PPP) at constant 2011 international dollar prices are from the November 14, 2018 update of the World Development Indicators (WDI). The GDP figures
-for Taiwan, up to 2014, are from the Penn World Table 9. A few countries are missing the GDP numbers in the WDI release but were present in earlier releases. We use the numbers from the earlier release, after adjusting their levels by a factor of 1.17 to take into account changes in the implied prices when switching from the PPP 2005 prices used in the earlier release to the PPP 2011 prices used in the latest release. The factor of 1.17 is the average ratio derived by dividing the US GDP per capita under the 2011 prices with their counterparts under the 2005 prices.
+2. *GDP per capita (variable name "GDP")*: The survey measure of GDP is purchasing power parity (PPP) at constant 2011 international dollar prices are from the November 14, 2018 update of the World Development Indicators (WDI). The GDP figures for Taiwan, up to 2014, are from the Penn World Table 9. A few countries are missing the GDP numbers in the WDI release but were present in earlier releases. We use the numbers from the earlier release, after adjusting their levels by a factor of 1.17 to take into account changes in the implied prices when switching from the PPP 2005 prices used in the earlier release to the PPP 2011 prices used in the latest release. The factor of 1.17 is the average ratio derived by dividing the US GDP per capita under the 2011 prices with their counterparts under the 2005 prices.
 
 3. *Gini of household income reported in the GWP (variable name "GINI")*: The income inequality variable is described in Gallup’s “WORLDWIDE RESEARCH METHODOLOGY AND CODEBOOK” (Updated July 2015) as “Household Income International Dollars [...] To calculate income, respondents are asked to report their household income in local currency. Those respondents who have difficulty answering the question are presented a set of ranges in local currency and are asked which group they fall into. Income variables are created by converting local currency to International Dollars (ID) using purchasing power parity (PPP) ratios.”
 
@@ -65,11 +66,22 @@ for Taiwan, up to 2014, are from the Penn World Table 9. A few countries are mis
 
 5. *Year of data collection (variable name "Year")*: The year the data were collected.
 
-First, lets load this data into our R environment. Go to the AT4 folder, and then to the workshop folder, and find the "WHR.csv" file. Click on it and then select "import dataset". In the new window that appears, click "update" and then when the dataframe shows, click import. If you want, you can try running the code below and it might do the same thing (if not put your hand up).
+First, lets load this data into our R environment. Go to the AT3 folder, and then to the workshop folder, and find the "WHR.csv" file. Click on it and then select "import dataset". In the new window that appears, click "update" and then when the dataframe shows, click import. If you want, you can try running the code below and it might do the same thing (if not put your hand up).
 
 
 ```{r}
 WHR <- read_csv("C:/Users/CURRANT/Dropbox/Work/LSE/PB130/MT10/Workshop/WHR.csv")
+WHR
+```
+
+## Data preperation
+
+Before we begin analysing, there are missing values in the GDP and gini variables, so they will need to be dealt with. Lets filter the GDP and gini variables to get rid of the cases with missing values.
+
+```{r}
+WHR <- # into existing dataframe
+WHR %>% # from existing daraframe
+filter(GDP >= "1" & GINI >="0") # Filter GDP at a value of 1 and above and gini at values 0 and above (i.e., rid the dataframe of any non-numeric cases)
 WHR
 ```
 
@@ -99,15 +111,6 @@ favstats(~GDP, data=WHR)
 Helpfully, the WHR data only contains relevant data - that is, there are no minus or coded values for things like no response or "dont know" as there are in the WVS dataset. However, we do have 28 missing values in the GDP variable,  so they will need to be dealt with.
 
 Inspecting the descriptives shows that the happiness variable has a mean of 5.44 and a SD of 1.12. Most mean happiness scores appear to fall above the scale mid-point, but there is a good amount of variance around this average. The GDP variable on the other hand has a mean of 9.22 and a SD of 1.18. It is difficult to interpret the meaning of this mean score, but we do know that there is far less variance in the GDP variable than in the happiness variable.
-
-We can visualize these distributions to get a better picture. But before we do that, lets just filter the GDP and GINI variables (we'll use GINI later) to get rid of the cases with missing values.
-
-```{r}
-WHR <- # into existing dataframe
-WHR %>% # from existing daraframe
-filter(GDP >= "1" & GINI >="0") # Filter GDP at a value of 1 and above and gini at values 0 and above (i.e., rid the dataframe of any non-numeric cases)
-WHR
-```
 
 Now lets run the histograms. First lets look at the happiness distribution.
 
@@ -236,11 +239,15 @@ Error is measured in terms of the residual, or the observed score for happiness 
 ```{r}
 # plot 1, empty model
 WHR %>%
-ggplot(aes(x = GDP, y = Happiness)) + 
-    geom_point() + # this is just a request to plot the points
-    geom_hline(aes(yintercept=mean(Happiness)), col="blue", size=1) + # this adds a line for the mean (empty model)
+  ggplot(aes(x = 1, y = Happiness)) + 
+  geom_point(position = position_jitter(width = 0.1)) + 
+  geom_hline(aes(yintercept=mean(Happiness)), col="blue", size=1) +
   ggtitle("Empty Model") +
-  theme_classic(base_size = 8)
+  xlab("") +
+  xlim(0.5, 1.5) +
+  theme_classic(base_size = 8) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
 # plot 2, regression model
 WHR %>%
 ggplot(aes(x = GDP, y = Happiness)) + 
@@ -377,7 +384,7 @@ When we run that calculation, we find that the sum of squares for the empty mode
 As we did last week, lets partition this variance using supernova() and interpret how much variance in happiness is explained by GDP.
 
 ```{r}
-superanova(happiness.model1)
+supernova(happiness.model1)
 ```
 
 

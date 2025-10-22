@@ -202,7 +202,7 @@ The implication from this analysis appears to be that Americans who reported the
 
 To this point, I've been showing you how we use the estimated standard deviation of the sampling distribution - or the *standard error* - to gauge how far away our estimate is from a zero effect. 
 
-When we take the standard error and divide it by the estimate we have a metric - a t ratio - that tells us how many standard errors our estimate is away from zero. If the t ratio is greater than 1.96, then we reject the null hypothesis and conclude that, assuming a normal sampling distribution, a zero mean difference is unlikely in the population.
+When we take the estimate and divide it by the tandard error we have a metric - a t ratio - that tells us how many standard errors our estimate is away from zero. If the t ratio is greater than 1.96, then we reject the null hypothesis and conclude that, assuming a normal sampling distribution, a zero mean difference is unlikely in the population.
 
 We can make this assumption of a normal sampling distribution because of something called the central limit theorem (see lecture notes for more information)
 

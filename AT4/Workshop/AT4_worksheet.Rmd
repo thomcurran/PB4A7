@@ -1,5 +1,5 @@
 ---
-title: 'AT5: Hypothesis Testing and Causal Inference'
+title: 'AT4: Hypothesis Testing and Causal Inference'
 output:
   html_document:
     df_print: paged
@@ -70,7 +70,7 @@ WVS <- readRDS("C:/Users/CURRANT/Dropbox/Work/LSE/PB130/MT11/Workshop/WV6_Data_R
 WVS$V2A <- as_character(WVS$V2A) # this saves the country varaible as a "character" variable (i.e., the names o th countries) rather than its default "numeric" value.
 ```
 
-## Two-parameter model or independent t-test with confidence inttervals
+## Two-parameter model or independent t-test with confidence intervals
 
 Okay lets now move to a new research topic using the WVS to examine differences between independent groups. We will start with a two-parameter model (two groups) because it is the easiest to compare to the two-parameter regression model (one continuous explanatory variable) that we will run afterwards. 
 
@@ -297,7 +297,7 @@ To get a clue about why the normal theory 95% confidence interval is too liberal
 
 As I mentioned in the lecture, bootstrapping the estimates is now the conventional way to determine statistical significance. So, therefore, the difference in life satisfaction between those who reported they would not like to have immigrants as neighbors and those who didn't mind immigrants as neighbors is not statistically significant.
 
-We might write this is a research paper like so:
+We might write this in a research paper like so:
 
 An independent t-test was performed to test the difference in life satisfaction between Americans who reported they would not like to have immigrants as neighbors versus those who didn't mind immigrants as neighbors. The linear model indicated that not liking immigrants as neighbors  explained 0.02% of the variance in life satisfaction (R = .04, R2 = .002, F(1, 2214) = 4.333, p = .04). There was a statistically significant difference of -0.24 between Americans who reported that they would not like to have immigrants as neighbors (mean life satisfaction = 7.23, SD = 2.02) and those who reported no preference (mean life satisfaction = 7.47, SD = 1.83): t(2214) = -2.08, p = .04. The 95% confidence interval associated with this mean difference was obtained with 5,000 bootstrap resamples and included zero (mean difference = -.24, 95% CI = -.47, .001). As such, the difference in life satisfaction between Americans who reported they would not like to have immigrants as neighbors and those who didn't mind immigrants as neighbors is not statistically significant. 
 

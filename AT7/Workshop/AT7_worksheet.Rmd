@@ -1,4 +1,4 @@
----
+ ---
 title: "General Linear Model Diagnostics"
 output: html_notebook
 ---
@@ -97,13 +97,13 @@ Note that the Welch test does not require homogeneity of the variances, but the 
 
 ## Testing The ANOVA Assumptions
 
-To give an example of how to test for these assumptions prior to your analyses, we are going to use the perfectionism data from last year. If you remember, this data contain average levels of perfectionism from studies in the US, Canada, and the UK. The focal research question is:
+To give an example of how to test for these assumptions prior to your analyses, we are going to use the perfectionism data. If you remember, this data contain average levels of perfectionism from studies in the US, Canada, and the UK. The focal research question is:
 
 RQ: Do levels of perfectionism differ between samples from the US, Canada and the UK
 
 This is a classic One-Way ANOVA with three levels of the independent variable (Country) and one dependent variable (SOP). We tested this data without testing whether the assumptions of normality and equality of variances were met. 
 
-First, lets load this data into our R environment. Go to the LT1 folder, and then to the workshop folder, and find the "perfectionism.csv" file. Click on it and then select "import dataset". In the new window that appears, click "update" and then when the dataframe shows, click import.
+First, lets load this data into our R environment. Go to the AT71 folder, and then to the workshop folder, and find the "perfectionism.csv" file. Click on it and then select "import dataset". In the new window that appears, click "update" and then when the dataframe shows, click import.
 
 ```{r}
 library(readr)
@@ -183,7 +183,7 @@ It’s possible to use the function pairwise.wilcox.test() to calculate non-para
 pairwise.wilcox.test(perfectionism$SOP, perfectionism$Country, p.adjust.method = "BH")
 ```
 
-As we saw lat year, the Canada US contrast is significant, (p = .039) but all other contrasts are not different from zero.
+As we saw before reading week, the Canada US contrast is significant, (p = .039) but all other contrasts are not different from zero.
 
 ## Testing Assumption of Equality of Variances
 
@@ -305,7 +305,7 @@ lm.model<-lm(Happiness~GDP, data=WHR)
 summary(lm.model)
 ```
 
-As we saw last year, these variables share a significant positive relationship (b = .74, p < .001).
+As we saw before reading week, these variables share a significant positive relationship (b = .74, p < .001).
 
 ## Testing for linearity and equality of variances
 

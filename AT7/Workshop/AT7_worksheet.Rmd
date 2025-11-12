@@ -275,7 +275,7 @@ It’s really bad to have a biased standard error because it is used to calculat
 
 ## Testing The Linear Regression Assumptions
 
-To practice diagnosing a linear regression model with continuous variables (simple regression), we are going to use the happiness and GDP variables in the WHR dataframe. Remember this data from last year? Our theory was that as the wealth of a country increases, so self-report happiness also increases. In other words, we are expecting a positive relationship between wealth as measured by GDP and happiness as measured by the Cantril life ladder.
+To practice diagnosing a linear regression model with continuous variables (simple regression), we are going to use the happiness and GDP variables in the WHR dataframe. Remember this data from before readong week? Our theory was that as the wealth of a country increases, so self-report happiness also increases. In other words, we are expecting a positive relationship between wealth as measured by GDP and happiness as measured by the Cantril life ladder.
 
 Before we delve into this topic, lets just clarify the research question we are testing:
 
@@ -362,7 +362,7 @@ Just as the other plots suggested, all of our assumptions seem to be acceptable 
 
 Okay, lets do some diagnosis on some ANOVA data to give you a chance to practice.
 
-The data are taken from last years secondary data assignment. If you remember, I gave you some data from an online retailer interested in improving their workers' productivity at work with music. To test whether music had an impact on productivity, a researcher recruited a sample of 150 and randomly split them into three groups:
+Here are some data from an online retailer interested in improving their workers' productivity at work with music. To test whether music had an impact on productivity, a researcher recruited a sample of 150 and randomly split them into three groups:
 
 1. a "control group" that did not listen to music (no_music)
 

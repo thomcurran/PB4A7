@@ -245,12 +245,32 @@ You can see that the conditional effect of structure on exhaustion is negative a
 ```{r}
 jnt(mod.model, predictor = "Structure", moderator = "Control", alpha = .05) # I set up the jnt function to take a lm() object and then to stipulate the predictor and moderator, you can adjust the alpha level using alpha=
 ```
+We can also call all this information at once using the new interactions package.
+
+```{r}
+install.packages("pequod")
+library(pequod)
+jn_output <- johnson_neyman(mod.model, alpha = 0.05)
+
+# View the output
+jn_output
+```
+
 
 As we can see jnt() has produced two values of the moderator at which the conditional effect is significant between, or either side of. We know from the pick-a-point that the conditional effect is significant outside of these values but not in between, so the conclusion here is that when control is lower than 1.64 the effect of structure on exhaustion is negative and significant. However, when control is higher that 4.85, the effect of structure on exhaustion is positive and significant. This is informative information, but nevertheless quite difficult to visualize so within modplot I also created a modplot() function that plots the relationship between  the predictor and outcome across the range of values of the moderator. In this plot, I also added the confidence interval around the conditional effect and demarcate the JN region of significance with horizontal lines. Lets go ahead and call that plot now.
 
 ```{r}
 modplot(mod.model, predictor = "Structure", moderator = "Control", alpha = .05, jn = TRUE) # like the jnt() function, I set the modplot() function to take a lm() object, the predictor, the moderator, the alpha level and whether you want to print the JN values. If jn = FAlSE, vertical lines demarcating the region(s) of significance will not be drawn.
 ```
+
+Another way to do this is via the interactions package. It gives a more colourful version of the same output.
+
+```{r}
+install.packages("interactions")
+library(interactions)
+johnson_neyman(mod.model, pred = "Structure", modx = "Control",)
+```
+
 
 Hopefully this plot brings our analyses to life. You can see that when the effect of structure on exhaustion is plotted across the range of values of control the nature of the relationship changes. At low control (i.e., < 1.65), effect of structure on exhaustion is negative and significant (i.e., the 95% confidence intervals do not include zero). At high control (i.e., > 4.85), effect of structure on exhaustion is positive and significant (i.e., the 95% confidence intervals do not include zero). Pretty neat!
 

@@ -172,6 +172,7 @@ As always, before we delve into this topic lets just clarify the research questi
 Now lets quickly check the visuals for the model assumptions using the performance function we saw last week.
 
 ```{r}
+linear.model <- lm(Exhaustion ~ Control + Disconnection, data=employee)  
 check_model(linear.model)
 ```
 
@@ -189,7 +190,7 @@ Let's quickly run the correlation matrix now for the variables:
 
 
 ```{r}
-rcorr(as.matrix(data_var[,c("Control","Disconnection", "Exhaustion")], type="pearson"))
+rcorr(as.matrix(employee[,c("Control","Disconnection", "Exhaustion")], type="pearson"))
 ```
 
 We can see that, in line with our hypotheses, the variables are all positively correlated. That's good. It will be the job of our model testing to attempt to approximate this matrix. In just identified models, we will perfectly replicate this matrix because no information is missing (ie. 0 degrees of freedom). In over identified models there will be some discrepancy because information is missing.
@@ -271,7 +272,7 @@ Okay, lets go ahead and set that up:
 
 
 ```{r}
-just.model <- sem(med.model, data = data_var, se = "bootstrap", bootstrap = 100)
+just.model <- sem(med.model, data = employee, se = "bootstrap", bootstrap = 100)
 ```
 
 
@@ -369,10 +370,10 @@ To show that path analysis with a just identified model is exactly the same the 
 
 ```{r}
 ## linear model for a path
-model.a <- lm(Disconnection ~ 1 + Control, data=data_var)
+model.a <- lm(Disconnection ~ 1 + Control, data=employee)
 
 ## linear model for b and c paths
-model.b <- lm(Exhaustion ~ 1 + Control + Disconnection, data = data_var)
+model.b <- lm(Exhaustion ~ 1 + Control + Disconnection, data = employee)
 
 ## mediation analysis using linear regression
 mediation <- mediate(model.a, model.b, treat="Control", mediator="Disconnection", boot=TRUE, sims=100, boot.ci.type="perc", conf.level= 0.95) 
@@ -430,7 +431,7 @@ ab := a*b
 And then let's fit that model:
 
 ```{r}
-over.model <- sem(med.model2, data = data_var, se = "bootstrap", bootstrap = 100)
+over.model <- sem(med.model2, data = employee, se = "bootstrap", bootstrap = 100)
 ```
 
 
@@ -462,7 +463,7 @@ We can compare the matrices directly if we ask for the fitted values for our ove
 
 ```{r}
 ## covariance matrix for the data
-cov(as.matrix(data_var[,c("Exhaustion","Disconnection", "Control")]))
+cov(as.matrix(employee[,c("Exhaustion","Disconnection", "Control")]))
 
 ## model implied covariance matrix
 fitted(over.model)

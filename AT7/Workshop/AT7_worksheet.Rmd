@@ -281,7 +281,7 @@ Before we delve into this topic, lets just clarify the research question we are 
 
 RQ: Is there a linear relationship between GDP and happiness?
 
-First, lets load this data into our R environment. Go to the LT1 folder, and then to the workshop folder, and find the "WHR.csv" file. Click on it and then select "import dataset". In the new window that appears, click "update" and then when the dataframe shows, click import.
+First, lets load this data into our R environment. Go to the AT7 folder, and then to the workshop folder, and find the "WHR.csv" file. Click on it and then select "import dataset". In the new window that appears, click "update" and then when the dataframe shows, click import.
 
 ```{r}
 WHR <- read_csv("C:/Users/CURRANT/Dropbox/Work/LSE/PB230/LT1/Workshop/WHR.csv")

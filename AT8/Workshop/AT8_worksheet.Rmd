@@ -76,7 +76,7 @@ We can test two types of model:
 
 ![](https://i.postimg.cc/W4BkYD97/just.jpg)    
 
-Multiple regression models are just identified. You can run them as a path model, sure, but you'll get the same answer. We ran a just identified mediation model last year when we tested mediation.
+Multiple regression models are just identified. You can run them as a path model, sure, but you'll get the same answer. We ran a just identified mediation model before reading week when we tested mediation.
 
 The point of running an over identified path model - or any structural equation model for that matter - is to be able to be wrong. And that's only true if your model is over identified (i.e. has missing paths). 
 
@@ -233,7 +233,7 @@ Also the linear model function we can display the model results using summary().
 
 ## The just identified mediation model
 
-To begin with, lets write the code that builds the just identified mediation model. That is, the model which contain all possible paths. It is also the model that directly mimics the linear regression approach we ran last year, as we will see later.
+To begin with, lets write the code that builds the just identified mediation model. That is, the model which contains all possible paths. It is also the model that directly mimics the linear regression approach we ran last year, as we will see later.
 
 ![](https://i.postimg.cc/KjZ4Cttt/justmodelsch.png)
 
@@ -260,7 +260,7 @@ total := ab+c
 
 Now we have set up the path model, we can fit it using the sem function. Before we do that though, one thing to note about the standard errors for the estimates.
 
-Standard errors in lavaan are by default estimated using maximum likelihood estimation. We saw MLE last year when we introduced logistic regression as a method for estimating the line of best fit in the absence of residuals. The same logic applies in path analysis (and structural equation modeling more generally) because the input for path modeling is the covariance matrix, not the data. Therefore we have no residuals to estimate error with, we need another method and that method is MLE.
+Standard errors in lavaan are by default estimated using maximum likelihood estimation. You may have have about MLE before because it is the the line of best fit is estimated in logistic regression in the absence of residuals. The same logic applies in path analysis (and structural equation modeling more generally) because the input for path modeling is the covariance matrix, not the data. Therefore we have no residuals to estimate error with, we need another method and that method is MLE.
 
 Remember: we are using the correlations to estimate the paths, not the data (this is also why there are no intercepts reported in SEM, because unlike linear regression, the means are not used). With full information (i.e., no degrees of freedom), we can estimate the correlations perfectly. But when we remove information, as we will do later, our estimates will be wrong, how how wrong is the question.
 
@@ -341,7 +341,7 @@ Also from the summary table we can see that control is a significant predictor o
 
 The crucial effect in this analysis, though, is the indirect effect. Here we have an indirect effect (ab) of .07. The interpretation of this estimate is that for every one unit increase in control, there is .07 unit increase on exhaustion passing through disconnection.
 
-The question, however, is: is that .07 effect meaningful? Is that a lot? And is it sufficiently large enough for us to deem a zero indirect effect unlikely? As we saw in last year, to know this we need to bootstrap the sampling distribution of the indirect effect to ascertain the 95% confidence interval. We have the normal theory confidence interval presented in the summary table, but that is no good. We need the bootstrap confidence interval. 
+The question, however, is: is that .07 effect meaningful? Is that a lot? And is it sufficiently large enough for us to deem a zero indirect effect unlikely? As we saw before reading week, to know this we need to bootstrap the sampling distribution of the indirect effect to ascertain the 95% confidence interval. We have the normal theory confidence interval presented in the summary table, but that is no good. We need the bootstrap confidence interval. 
 
 To request the bootstrap confidence intervals from the model, we simply pass the model through the parameterestimates() function and stipulate that we want boot.ci.type = "perc".
 

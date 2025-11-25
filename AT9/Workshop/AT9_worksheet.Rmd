@@ -278,11 +278,11 @@ Similarly, we might label the factor 2 as fear of statistics, factor 3 fear of m
 
 ## Reliability Analysis
 
-If you’re using factor analysis to validate a questionnaire, like we are here, as we saw last year it is useful to check the reliability of your scale.
+If you’re using factor analysis to validate a questionnaire, it is useful to check the reliability of your scale.
 
 Reliability means that a measure (or in this case questionnaire) should consistently reflect the construct that it is measuring. One way to think of this is that, other things being equal, a person should get the same score on a questionnaire if they complete it at two different points in time.
 
-The simplest way to do this is with Cronbach's alpha. Thinking back to last year, Cronbach's alpha is loosely equivalent to splitting data in two in every possible way and computing the correlation coefficient for each split, and then compute the average of these values.
+The simplest way to do this is with Cronbach's alpha. Cronbach's alpha is loosely equivalent to splitting data in two in every possible way and computing the correlation coefficient for each split, and then compute the average of these values.
 
 Recall that we have four factors: fear of computers, fear of statistics, fear of mathematics, and peer evaluation. Each factor stands for several questions in the questionnaire. For example, fear of computers includes question 6, 7, 10, …, 18.
 

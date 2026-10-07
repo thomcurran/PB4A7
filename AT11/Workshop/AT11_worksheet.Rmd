@@ -232,7 +232,7 @@ empty.happiness.fit <- lmer(formula = happy ~ 1 + (1|school), data=school, REML=
 summary(empty.happiness.fit)
 ```
 
-Note that R uses restricted maximum likelihood to fit the model. If you turn this off with the REML=FALSE option (as I have done), it will use the minimization of the log-likelihood instead to fit the model, which aligns with what we did last year in logistic regression.
+Note that R uses restricted maximum likelihood to fit the model. If you turn this off with the REML=FALSE option (as I have done), it will use the minimization of the log-likelihood instead to fit the model Which you go for is up to you.
 
 In this model, the code for the model reads, “happy ~ 1 + (1|school).” The “1|school” section of the model is specified in order to only estimate 1 intercept for happiness and to group the data by school "|". This intercept represents the mean happiness score across all participants over all schools. In this way, we calculate the deviation of each school mean from the overall mean (intercept) for between-school variance. 
 
@@ -349,7 +349,7 @@ stress <- read_csv("C:/Users/CURRANT/Dropbox/Work/LSE/PB230/LT5/Workshop/stress.
 head(stress, 16)
 ```
 
-You will see that this data is structured longways, just like last year in within-person factorial ANOVA, with the time points represented by a new row in the data. The variables are in various states of preparedness, so it is important to quickly give an overview of what each variable is measuring.
+You will see that this data is structured longways, with the time points represented by a new row in the data. The variables are in various states of preparedness, so it is important to quickly give an overview of what each variable is measuring.
 
 1. id: This is the ID variable for each participant in the study. There are eight days worth of data for each participant so there are eight rows for each id.
 
@@ -539,7 +539,7 @@ To know whether this person to person variability in the trajectories of stress 
 
 ## Plotting the interaction
 
-The moderation of time and neuroticism is significant so we should plot and probe the interaction term, just like we did last year in the moderation analysis session.
+The moderation of time and neuroticism is significant so we should plot and probe the interaction term, just like we did before reading week in the moderation analysis session.
 
 We can do this in various ways, but I like the Johnson-Neyman technique we saw last year that plots the conditional slopes across the range of values of a moderator. 
 

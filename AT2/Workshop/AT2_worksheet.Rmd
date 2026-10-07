@@ -58,7 +58,7 @@ The data are from an intervention study with pre and post weights and give a goo
 
 We are going to go through testing these models with the lm() function first, and I'll then show you the equivalence with the t.test() function. 
 
-First, lets load this data into our R environment. Go to the MT9 folder, and then to the workshop folder, and find the "anorexia.csv" file. Click on it aand then select "import dataset". In the new window that appears, click "update" and then when the dataframe shows, click import. If you want, you can try running the code below and it should do the same thing (if not put your hand up).
+First, lets load this data into our R environment. Go to the AT9 folder, and then to the workshop folder, and find the "anorexia.csv" file. Click on it aand then select "import dataset". In the new window that appears, click "update" and then when the dataframe shows, click import. If you want, you can try running the code below and it should do the same thing (if not put your hand up).
 
 
 ```{r}
@@ -550,7 +550,7 @@ Before we start, lets just clarify the research question for our two-parameter l
 
 ## Task 1 - Loading the dataframe
 
-Load the WVS dataframe. The WVS data is avalaible in the AT3 workshop folder. Load it into the R environment like you have been doing in previous weeks (i.e., click on it, change name to WVS or edit the code below).
+Load the WVS dataframe. The WVS data is avalaible in the AT2 workshop folder. Load it into the R environment like you have been doing in previous weeks (i.e., click on it, change name to WVS or edit the code below).
 
 
 ```{r eval=FALSE}

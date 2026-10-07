@@ -99,7 +99,7 @@ This is the reason why you can get rid of measurement error by using SEM. This m
 
 # Estimation
 
-Estimating SEMs, like path analysis, consists of finding a set of parameters that fits the data best. For complex SEMs this is achieved by iterative algorithms, typically a maximum likelihood estimator, as we saw in the path analysis session (this is why SEM analyses do not have intercepts, the estimators and SEs are estimated by maximum likelihood, which we saw last year in logistic regression)
+Estimating SEMs, like path analysis, consists of finding a set of parameters that fits the data best. For complex SEMs this is achieved by iterative algorithms, typically a maximum likelihood estimator, as we saw in the path analysis session (this is why SEM analyses do not have intercepts, the estimators and SEs are estimated by maximum likelihood)
 
 Put simply, though, the estimation of SEMs can be well understood by applying Wright’s path tracing rules - just like in the path analysis session. Even though the estimators are quite complex in big models, the underlying principal is not too complicated!
 

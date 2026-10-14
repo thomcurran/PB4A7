@@ -303,7 +303,7 @@ summary(happiness.model1)
 
 By now, hopefully the linear model output should be familiar. We have an intercpet(b0) of -1.36, which we have established is meaningless because it represents the predicted happiness value when GDP = 0. GDP cannot be 0, so this is simply a hypothetical value used to anchor the regression line.
 
-More interesting is the GDP estimate or b1. Here we have a value of .74. This is interpreted like the slope of a line. Therefore, for every one unit increase in GDP, there is an estimated .74 unit increase in mean happiness. Alongside this slope value we have a standard error (sampling variance) and t ratio. Hopefully we should know how these are interpreted. The p value associated with t is well below .05 and therefore we reject the null hypothesis. GDP is a statistically significant predictor of average happiness!
+More interesting is the GDP estimate or b1. Here we have a value of .75. This is interpreted like the slope of a line. Therefore, for every one unit increase in GDP, there is an estimated .75 unit increase in mean happiness. Alongside this slope value we have a standard error (sampling variance) and t ratio. Hopefully we should know how these are interpreted. The p value associated with t is well below .05 and therefore we reject the null hypothesis. GDP is a statistically significant predictor of average happiness!
 
 ## Standardized estimates
 
@@ -324,7 +324,7 @@ happiness.modelZ <- lm(zhappiness ~ 1 + zGDP, data = WHR)
 summary(happiness.modelZ)
 ```
 
-I have no idea why R uses scientific notation in the estimate for the standardised relationship, but it does. E-01 means move the decimal point 1 place to the left. Hence, the standardized estimate for the slope of GDP and happiness is 0.79. A couple of things to notice about this standardized estimate. First, it is different from the unstandardised estimate (0.74). This is because rather than raw units, the standardized estimate shows that for every 1 SD unit increase in GDP there is a .78 SD increase in happiness. Remember that z-sores have a mean of zero and SD of 1. Therefore, the standardised estimates can only range from -1 to +1. A standardized estimate of .74 is a very large effect!
+I have no idea why R uses scientific notation in the estimate for the standardised relationship, but it does. E-01 means move the decimal point 1 place to the left. Hence, the standardized estimate for the slope of GDP and happiness is 0.78. A couple of things to notice about this standardized estimate. First, it is different from the unstandardised estimate (0.75). This is because rather than raw units, the standardized estimate shows that for every 1 SD unit increase in GDP there is a .78 SD increase in happiness. Remember that z-sores have a mean of zero and SD of 1. Therefore, the standardised estimates can only range from -1 to +1. A standardized estimate of .74 is a very large effect!
 
 Second, in simple regression, where there is only one explanatory variable, the standardised estimate is exactly the same as Pearson's r. Take a look at the correlation matrix above to check this. This is not a coincidence - both are standardized estimates with equivalent calculations (see lecture notes). 
 
@@ -373,13 +373,13 @@ Hence, just like the residuals in any other linear model, we need to square them
 sum(WHR$residuals^2)
 ```
 
-In our regression model, we have a sum of squares of 828.15. Is this a lot of error? We don't know until we also have a baseline to compare it to. Our baseline, of course, is the empty model. When we calculated the covariance earlier, we also returned the variance in happiness in the diagonal of the matrix (see covariance matrix above if unsure). The variance for happiness is 1.257866. Therefore, we can just multiply that value by the df in the sample (1675) to return the sum of squares for the empty model.
+In our regression model, we have a sum of squares of 758.13. Is this a lot of error? We don't know until we also have a baseline to compare it to. Our baseline, of course, is the empty model. When we calculated the covariance earlier, we also returned the variance in happiness in the diagonal of the matrix (see covariance matrix above if unsure). The variance for happiness is 1.257866. Therefore, we can just multiply that value by the df in the sample (1675) to return the sum of squares for the empty model.
 
 ```{r}
-1.257866*1675 # remember variance (1.26) is SS/df so it follows that sum of squares is var*df
+1.271024*1494 # remember variance (1.26) is SS/df so it follows that sum of squares is var*df
 ```
 
-When we run that calculation, we find that the sum of squares for the empty model is 2106.926. That means that adding GDP has minimized the error in the model by 1278.779 sum of squares (i.e., 2106.926 - 828.15 = 1278.779). Indeed, this is a lot of error explained by one explanatory variable!
+When we run that calculation, we find that the sum of squares for the empty model is 1898.91. That means that adding GDP has minimized the error in the model by 1140.78 sum of squares (i.e., 1898.91 - 758.13 = 1140.78). Indeed, this is a lot of error explained by one explanatory variable!
 
 As we did last week, lets partition this variance using supernova() and interpret how much variance in happiness is explained by GDP.
 
@@ -407,7 +407,7 @@ ggplot(aes(x = GDP, y = Happiness)) +
 
 ## How its written
 
-A simple regression analysis was performed to test the relationship between GDP and Happiness in the World Happiness Report data. The regression model indicated that GDP explained 61% of the variance in Happiness (R = .78, R2 = .61, F(1) = 2584.90, p < .001). Inspection of the model estimates indicated that GDP positively predicted Happiness (b = .74, β = .78, t (1674) = 50.84, p < .001).
+A simple regression analysis was performed to test the relationship between GDP and Happiness in the World Happiness Report data. The regression model indicated that GDP explained 61% of the variance in Happiness (R = .78, R2 = .60, F(1) = 2246.57, p < .001). Inspection of the model estimates indicated that GDP positively predicted Happiness (b = .74, β = .78, t (1674) = 47.40, p < .001).
 
 ## Multiple regression
 

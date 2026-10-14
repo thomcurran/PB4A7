@@ -70,7 +70,7 @@ First, lets load this data into our R environment. Go to the AT3 folder, and the
 
 
 ```{r}
-WHR <- read_csv("C:/Users/CURRANT/Dropbox/Work/LSE/PB130/MT10/Workshop/WHR.csv")
+WHR <- read_csv("C:/Users/Thocm/Dropbox/Work/LSE/PB4A7/PB4A7/AT3/Workshop/WHR.csv")
 WHR
 ```
 
@@ -176,7 +176,7 @@ We calculate Pearson's r by taking the covariance and dividing it by the SD of x
 
 
 ```{r}
-1.036095/(1.185794*1.121546) # here I am taking the covariance between GDP and happiness (1.036) and dividing it by the product of the SD of GDP (1.18) multiplied by the SD of perfectionism (1.12)
+1.011379/(1.157413*1.127397) # here I am taking the covariance between GDP and happiness (1.036) and dividing it by the product of the SD of GDP (1.18) multiplied by the SD of happiness (1.12)
 ```
 
 Because the covariance has been divided by the combined SD of the variables, it is now a standardized metric and runs between -1 and +1. The closer Pearson's r is to +/-1, the larger the relationship.

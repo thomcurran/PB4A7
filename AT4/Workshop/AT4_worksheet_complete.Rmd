@@ -327,7 +327,7 @@ Before we delve into this topic, lets just clarify the research question and nul
 I looked in the codebook and the satisfaction with financial situation of household is listed as V59. We know that the life satisfaction variable is V23. And we also need the country variable V2A to filter for United States. So lets first select those variables out of the WVS dataframe and save it as a new dataframe called "WVSfinace".
 
 
-```{r eval=FALSE}
+```{r}
 WVSfinance <- 
   WVS %>%
   select(V59,V23,V2A)
@@ -338,7 +338,7 @@ WVSfinance <-
 
 Just like other variables in this dataset, we need to edit the dataframe since the variables have values we can’t interpret like -5. Do that by using the filter() function. Also filter data from the United States in this code.
 
-```{r eval=FALSE}
+```{r}
 WVSfinance <- 
 WVSfinance %>% 
 filter(V59 >= "1" & V23 >= "1" & V2A == c("United States")) 
@@ -350,7 +350,7 @@ WVSfinance
 
 Write the code to draw a plot of the distribution of the finance satisfaction. 
 
-```{r eval=FALSE}
+```{r}
 WVSfinance %>% 
   ggplot(aes(x= V59)) + ## fill in the variable gap here for financial satisfaction
   geom_histogram(aes(y=..density..), binwidth=1, colour="black", fill="white") + 
@@ -371,7 +371,7 @@ Is the distribution of financial satisfaction approximately normal?
 
 Now use the rcorr() function to call the correlation coefficient - or Pearson's r - for the relationship between financial satisfaction and life satisfaction.
 
-```{r eval=FALSE}
+```{r}
 rcorr(as.matrix(WVSfinance[,c("V59","V23")], type="pearson")) # fill in the ?? gap here for the explanatory variable
 ```
 
@@ -391,7 +391,7 @@ Is this correlation statistically significant?
 
 Now lets set our up our linear regression model to examine the intercept and slope of the best fitting regression line using the lm() function. Don't forget to save the linear model in a new R object. I suggest finance.model
 
-```{r eval=FALSE}
+```{r}
 finance.model <- lm(V23 ~ 1 + V59, data=WVSfinance)
 summary(finance.model) # add the new R object to the summary function
 ```
@@ -427,7 +427,7 @@ Why?
 
 In the below chunk, use the lm.beta() function to calcuate the standardized estimate for the slope of financial satisfaction and life satisfaction.
 
-```{r eval=FALSE}
+```{r}
 lm.beta(finance.model)
 ```
 
@@ -443,7 +443,7 @@ How does this compare to the unstandardized slope?
 
 We've established whether there is a statistically significant relationship, but how much variance in life satisfaction is explained by the financial satisfaction mode? We can answer this question using the supernova() function in R, which breaks down the variance in life satisfaction due to the model and error (i.e., variance left over once we've subtracted out the model).
 
-```{r eval=FALSE}
+```{r}
 supernova(finance.model
            )
 ```
@@ -480,7 +480,7 @@ What do we conclude in relation to our research question?
 
 Okay, so we have a significant positive relationship and we also know that the finance satisfaction model explains a significant portion of life satisfaction variance. Lets now calculate the normal theory 95% confidence interval for our model estimates using the confint() function.
 
-```{r eval=FALSE}
+```{r}
 confint(finance.model) # add the finance model to the confint() function
 ```
 
@@ -504,7 +504,7 @@ We can see that the normal theory confidence interval supports our conclusions f
 
 So lets go ahead and generate a bootstrap sampling distribution of estimates using the Boot() function and save it as a new R object called finance.boot. Note that we are going to request 5000 resamples so that might take a little time to run!
 
-```{r eval=FALSE}
+```{r}
 finance.boot <- Boot(finance.model, f=coef, R = 5000) 
 summary(finance.boot) ## add the finance boot model and stipulate how many resamples you want to run (typically 5,000)
 ```
@@ -525,7 +525,7 @@ Are these similar?
 
 Lets go ahead and call the bootstrap 95% confidence interval using the confint() function.
 
-```{r eval=FALSE}
+```{r}
 confint(finance.boot, level = .95, type = "norm") # add the bootstrap model you just created to this code
 ```
 

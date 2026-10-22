@@ -2014,7 +2014,7 @@ might take a little time to run!</p>
 <pre class="r"><code>summary(immigrant.boot) # just like the linear model, the summary function outputs the summary of this analysis</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["R"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["original"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["bootBias"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bootSE"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bootMed"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"5000","2":"7.4747634","3":"-0.000395240","4":"0.04196104","5":"7.4747448","_rn_":"(Intercept)"},{"1":"5000","2":"-0.2359099","3":"-0.005313342","4":"0.12179922","5":"-0.2394176","_rn_":"V391"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["R"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["original"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["bootBias"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bootSE"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bootMed"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"5000","2":"7.4747634","3":"-0.0006227832","4":"0.04193811","5":"7.474843","_rn_":"(Intercept)"},{"1":"5000","2":"-0.2359099","3":"0.0002913445","4":"0.12269689","5":"-0.235469","_rn_":"V391"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>What R just did there is take a resample of the original sample and
@@ -2044,8 +2044,8 @@ the confint() function.</p>
 <pre><code>## Bootstrap normal confidence intervals
 ## 
 ##                  2.5 %      97.5 %
-## (Intercept)  7.3929165 7.557400770
-## V391        -0.4693186 0.008125525</code></pre>
+## (Intercept)  7.3931890 7.557583371
+## V391        -0.4766827 0.004280235</code></pre>
 <p>And well, what do you know! The bootstrap 95% confidence interval
 tells us something different to the normal theory 95% confidence
 interval. Here, we see that the range of values runs from -.47 to .001
@@ -2290,7 +2290,7 @@ might take a little time to run!</p>
 summary(finance.boot) ## add the finance boot model and stipulate how many resamples you want to run (typically 5,000)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["R"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["original"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["bootBias"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bootSE"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bootMed"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"5000","2":"4.8690594","3":"2.599627e-05","4":"0.1146032","5":"4.8685940","_rn_":"(Intercept)"},{"1":"5000","2":"0.4081202","3":"-1.728079e-04","4":"0.0160070","5":"0.4080856","_rn_":"V59"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["R"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["original"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["bootBias"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bootSE"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bootMed"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"5000","2":"4.8690594","3":"0.0025938597","4":"0.11708557","5":"4.870417","_rn_":"(Intercept)"},{"1":"5000","2":"0.4081202","3":"-0.0003592036","4":"0.01629903","5":"0.407962","_rn_":"V59"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>What is the mean bootstrap estimate for the slope of finance
@@ -2308,8 +2308,8 @@ the confint() function.</p>
 <pre><code>## Bootstrap normal confidence intervals
 ## 
 ##                 2.5 %    97.5 %
-## (Intercept) 4.6444152 5.0936516
-## V59         0.3769198 0.4396661</code></pre>
+## (Intercept) 4.6369820 5.0959490
+## V59         0.3765339 0.4404249</code></pre>
 <p>What is the bootstrap 95% confidence interval for the slope of
 finance satisfaction on life satisfaction?</p>
 <p>What does this confidence interval tell us?</p>
